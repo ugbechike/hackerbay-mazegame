@@ -3,7 +3,7 @@ import './App.css';
 import BeginGame from './components/enterGame';
 // import GameScore from './components/gameScore/gameScore';
 // import GameContainer from './components/gameCells/gameCells';
-// import {handleFinish, shuffleArray, GameOutcome} from './components/actions/actions';
+// import {renderEndGame, randomMoshroom, GameResult} from './components/actions/actions';
 
 let createReactClass = require('create-react-class');
 let items = []
@@ -13,7 +13,7 @@ let mario_jump;
 let max_mashroom;
 
 
-function GameOutcome(props) {
+function GameResult(props) {
 	let score_achived  = document.getElementById('score_achived')
 	
 	let no_of_moves_score = document.getElementById('no_of_moves')
@@ -37,19 +37,19 @@ let GameScore = createReactClass({
   render: function() {
       return (
           <div id="score" className="scoreGame">
-              <div className="achived">
+              <div>
                   <p>Score Achived</p>
                   <p id="score_achived">0</p>
               </div>
-              <div className="steps_used">
+              <div>
                   <p>Steps Used</p>
                   <p id="no_of_moves">0</p>
               </div>
-              <div className="steps_remaining">
+              <div>
                   <p>Steps Remaining</p>
                   <p id="steps_remaining">0</p>
               </div>
-              <div className="steps_finished">
+              <div>
                   <p>Mashroom Remaining</p>
                   <p id="mashrooms_remaining">0</p>
               </div>
@@ -94,7 +94,7 @@ let GameContainer = createReactClass({
 
 
 
-function handleFinish() {
+function renderEndGame() {
 	if(no_of_moves === max_no_of_moves){
 		let confirm = window.confirm("Game Over. Do you want to restart?");
 		if (confirm === true){
@@ -111,7 +111,7 @@ function handleFinish() {
 }
 
 
-function shuffleArray(array) {
+function randomMoshroom(array) {
 	for (let i = array.length - 1; i > 0; i--) {
 		let j = Math.floor(Math.random() * (i + 1));
 		let temp = array[i];
@@ -125,7 +125,7 @@ function shuffleArray(array) {
 
 
 
-function gameMove(event){
+function renderMoves(event){
 	if (event.keyCode === 37){
 		let mario = document.getElementsByClassName('mario')
 		let marioid = mario[0].id
@@ -237,7 +237,7 @@ class App extends Component {
 		let matrix = document.getElementById('root')
 		matrix.style.height = 40 * height + "px"
     matrix.style.width = 10 * width + "%"
-		let shuffled_data = shuffleArray(items)
+		let shuffled_data = randomMoshroom(items)
 		let truncated_data = shuffled_data.slice(0,parseInt(this.state.matrix_size/3,10))
 
 		for (let i = 0; i < truncated_data.length; i++) {
@@ -262,9 +262,9 @@ class App extends Component {
 			no_of_moves = no_of_moves + 1;
 
 		}
-		gameMove(event) 
-		handleFinish()
-		GameOutcome()
+		renderMoves(event) 
+		renderEndGame()
+		GameResult()
   }
   
   componentWillMount() {
@@ -273,6 +273,7 @@ class App extends Component {
 
   render(){
     return (
+
       <div className="App">
         <BeginGame />
         <GameContainer matrix={this.state.matrix_size}/>
