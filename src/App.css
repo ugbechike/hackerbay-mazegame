@@ -1,7 +1,7 @@
 .App {
   text-align: center;
-  display: flex;
-  margin-top: 20vh;
+  margin: auto;
+  width: 28%;
 }
 
 .maze-image {
@@ -20,59 +20,38 @@ background: lightgrey;
 border:solid black 1px;
 display: block;
 float: left;
+border-radius: 5px;
 }
 
 .getting_started {
-  width: 30%;
+  width: 100%;
+  font-family: cursive
 }
 
 .gamebox {
-  width: 32%;
+  width: 100%;
 }
 
 .scoreGame {
   display: flex;
-flex-wrap: wrap;
+  width: 100%;
 }
 
 .scoreGame>div{
-  width: 30%;
+    width: 30%;
+    margin-top: 10vh;
+    background: #ccc7c7;
+    color: black;
+    border: 1px solid #ccc7c7;
+    margin-right: 5px;
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+    -moz-box-shadow: 0 10px 6px -6px #777;
+    box-shadow: 0 10px 6px -6px #777;
+    border-radius: 5px;
+    height: 13vh;
+    font-family: cursive;
 }
 
-.achived {
-  background: #075c07;
-  border: 1px solid;
-border-radius: 5px;
-height: 13vh;
-color: white;
-font-family: cursive;
-}
 
-.steps_used {
-  background: #1f51d6;
-  border: 1px solid;
-border-radius: 5px;
-height: 13vh;
-color: white;
-font-family: cursive;
-}
-
-.steps_remaining {
-  background: #ffe81f;
-  border: 1px solid;
-border-radius: 5px;
-height: 13vh;
-color: white;
-font-family: cursive;
-}
-
-.steps_finished {
-  background: red;
-  border: 1px solid;
-border-radius: 5px;
-height: 15vh;
-color: white;
-font-family: cursive;
-}
 
 
