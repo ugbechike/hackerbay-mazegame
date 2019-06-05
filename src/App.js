@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
 import './App.css';
 import BeginGame from './components/enterGame';
-// import GameScore from './components/gameScore/gameScore';
-// import GameContainer from './components/gameCells/gameCells';
-// import {renderEndGame, randomMoshroom, GameResult} from './components/actions/actions';
 
 let createReactClass = require('create-react-class');
-let items = []
+let stuffs = []
 let no_of_moves;
-const max_no_of_moves = 64;
+const max_moves = 64;
 let mario_jump;
 let max_mashroom;
 
@@ -19,7 +16,7 @@ function GameResult(props) {
 	let no_of_moves_score = document.getElementById('no_of_moves')
 	let steps_remaining = document.getElementById('steps_remaining')
 	let mashrooms_remaining = document.getElementById('mashrooms_remaining')
-	steps_remaining.innerHTML = max_no_of_moves -  no_of_moves
+	steps_remaining.innerHTML = max_moves -  no_of_moves
 	no_of_moves_score.innerHTML = no_of_moves
 	mashrooms_remaining.innerHTML = document.getElementsByClassName('active').length
 	score_achived.innerHTML = max_mashroom - document.getElementsByClassName('active').length
@@ -81,13 +78,13 @@ let GameContainer = createReactClass({
 		let c = []  
 		for(let i=1; i<=this.props.matrix; i++){ 
 			c.push( <GameCell key={i} id={i} cells={c} /> )
-			items.push(i)
+			stuffs.push(i)
 		}
 		return {cells: c} 
 	},
 	render: function() {
 		return (
-		  <div className="gamebox"> { this.state.cells } </div>
+		  <div className="game_wrapper"> { this.state.cells } </div>
 		)    
 	}
 })
@@ -95,7 +92,7 @@ let GameContainer = createReactClass({
 
 
 function renderEndGame() {
-	if(no_of_moves === max_no_of_moves){
+	if(no_of_moves === max_moves){
 		let confirm = window.confirm("Game Over. Do you want to restart?");
 		if (confirm === true){
 			window.location.reload();
@@ -237,7 +234,7 @@ class App extends Component {
 		let matrix = document.getElementById('root')
 		matrix.style.height = 40 * height + "px"
     matrix.style.width = 10 * width + "%"
-		let shuffled_data = randomMoshroom(items)
+		let shuffled_data = randomMoshroom(stuffs)
 		let truncated_data = shuffled_data.slice(0,parseInt(this.state.matrix_size/3,10))
 
 		for (let i = 0; i < truncated_data.length; i++) {
