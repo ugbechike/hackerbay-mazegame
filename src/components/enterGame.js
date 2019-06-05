@@ -10,4 +10,4 @@ const BeginGame = (props) => {
     )
 }
 
-export default BeginGame;
+export default BeginGame
